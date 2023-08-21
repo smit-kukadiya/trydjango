@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block page_data %}
+
+<div class="container mt-5">
+
+    <form class="col-6 mx-auto card p-3 shadow-lg" enctype="multipart/form-data" method="POST">
+        <h1>Add Person</h1>
+        <hr>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="number" class="form-control" id="age" name="age" placeholder="Age">
+        </div>
+        <div class="mb-3">
+            <label for="file" class="form-label">Insert Image</label>
+            <input type="file" class="form-control" id="photo" name="photo" placeholder="Image">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <hr>
+    <div class="mt-5">
+        <div class="mx-auto col-6">
+            <form>
+            <div class="mb-3">
+                <label for="name" class="form-label">Search Person</label>
+                <input type="text" class="form-control" id="search" name="search"
+                    placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-hover mt-5">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </thead>
+        {% for person in persons %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td><img src="/media/{{ person.photo }}" alt=""></td>
+            <td><a href="/updatePerson/{{ person.id }}" class="btn btn-success">Update</a> <a
+                    href="/deletePerson/{{ person.id }}" class="btn btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

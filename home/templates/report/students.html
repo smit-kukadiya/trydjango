@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block page_data %}
+
+<div class="container mt-5">
+    <form class="mb-4">
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="search" name="search"
+                    placeholder="Search">
+        </div>
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+    </form>
+    <nav aria-label="Page navigation example">
+    <ul class="pagination mt-3">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a> </li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a> </li>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a> </li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a> </li>
+            {% endif %}
+    </ul>
+    </nav>
+    <table class="table table-hover mt-3">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Address</th>
+        </thead>
+        {% for student in page_obj %}
+        <tr>
+            <td><a href="{% url 'seemarks' student.student_id %}">{{ student.student_id }}</a></td>
+            <td>{{ student.student_name }}</td>
+            <td>{{ student.student_age }}</td>
+            <td>{{ student.department }}</td>
+            <td>{{ student.student_email }}</td>
+            <td>{{ student.student_address }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+    
+{% endblock %}
