@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
+# AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Application definition
 
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 
 EXTENDED_APPS = [
     'home',
-    'accounts'
+    # 'accounts'
 ]
 
 INSTALLED_APPS += EXTENDED_APPS
