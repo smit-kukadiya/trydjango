@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q, Sum
 from .seed import generate_report_card
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 def home(request):
     return render(request, 'index.html', context={'page': 'Home Page'})
